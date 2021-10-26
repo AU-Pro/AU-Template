@@ -1,14 +1,14 @@
-import path from 'path'
+const path = require('path')
 
-import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
-import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import { merge } from 'webpack-merge'
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { merge } = require('webpack-merge')
 
 // TypeScript Hot refresh
 
-import webpackBaseConfig from './webpack.base.conf'
-import { cssModule } from './webpack.part'
+const webpackBaseConfig = require('./webpack.base.conf.js')
+const { cssModule } = require('./webpack.part.js')
 
 const proxyTarget = 'http://localhost:10061'
 

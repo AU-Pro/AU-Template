@@ -1,4 +1,4 @@
-import { execSync } from 'child_process'
+const { execSync } = require('child_process')
 
 process.env.BABEL_ENV = 'development'
 process.env.NODE_ENV = 'development'

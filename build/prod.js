@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import webpack from 'webpack'
+const webpack = require('webpack')
 
-import webpackConfig from './webpack.prod.conf'
+const webpackConfig = require('./webpack.prod.conf')
 
 process.env.BABEL_ENV = 'production'
 process.env.NODE_ENV = 'production'

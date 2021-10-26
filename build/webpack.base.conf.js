@@ -1,9 +1,9 @@
-import path from 'path'
+const path = require('path')
 
-import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin'
-import CleanTerminalPlugin from 'clean-terminal-webpack-plugin'
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
-import WebpackBar from 'webpackbar' // 打包进度
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
+const CleanTerminalPlugin = require('clean-terminal-webpack-plugin')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const WebpackBar = require('webpackbar') // 打包进度
 
 module.exports = {
   entry: path.resolve(__dirname, '../src/index.tsx'), // 入口文件
@@ -16,7 +16,7 @@ module.exports = {
     alias: {
       src: path.join(__dirname, '../src/')
     },
-    extensions: ['.js', '.jsx', '.tsx', '.ts']
+    extensions: ['.js', '.jsx', '.tsx', '.ts', 'cjs']
   },
   // 缓存 模块、chunk
   cache: {

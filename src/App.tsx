@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import Time from './components/Time'
 import styles from './App.module.less'
+import Time from './components/Time'
 
 const App = () => {
   const handleClick = React.useCallback(() => {
