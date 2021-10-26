@@ -3,6 +3,7 @@ const path = require('path')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
 const { merge } = require('webpack-merge')
 
 // TypeScript Hot refresh
@@ -36,7 +37,7 @@ module.exports = merge(webpackBaseConfig, {
   },
   devServer: {
     host: '0.0.0.0', // 'local-ip' | 'local-ipv4' | 'local-ipv6'
-    // useLocalIp: true,                                        //  webpack5.0+ 不再包含此属性
+    // useLocalIp: true, // webpack5.0+ 不再包含此属性
     port: 5000,
     allowedHosts: 'all', // 'auto' | 'all' [string]
     client: {
@@ -84,6 +85,10 @@ module.exports = merge(webpackBaseConfig, {
       templateParameters: {
         env: 'local'
       }
+    }),
+    new ESLintPlugin({
+      failOnError: true, // 报错不影响编译
+      failOnWarning: true // 警告不影响编译
     }),
     new ReactRefreshWebpackPlugin()
   ]
