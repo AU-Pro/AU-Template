@@ -13,8 +13,8 @@ module.exports = {
   ],
   rules: {
     'jsx-a11y/click-events-have-key-events': 0,
-    'jsx-a11y/no-static-element-interactions': 0,
-    'no-use-before-define': 'off'
+    'jsx-a11y/no-static-element-interactions': 0
+    // 'no-use-before-define': 0
   },
   // extends: ['./lint/eslintBase.js', './lint/eslintReact.js'],
   parserOptions: {
