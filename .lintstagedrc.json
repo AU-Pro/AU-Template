@@ -1,5 +1,5 @@
 {
-  "*.{js,jsx}": ["cross-env NODE_ENV=prod eslint"],
+  "*.{js,jsx}": ["eslint"],
   "*.{css,less}": ["stylelint --fix"],
   "*.json": ["prettier --write"]
 }

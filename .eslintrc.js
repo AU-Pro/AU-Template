@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  plugins: ['@typescript-eslint', 'react-hooks'],
+  plugins: ['@typescript-eslint'],
   parser: '@typescript-eslint/parser',
   extends: [
     // 'airbnb',
@@ -13,7 +13,8 @@ module.exports = {
   ],
   rules: {
     'jsx-a11y/click-events-have-key-events': 0,
-    'jsx-a11y/no-static-element-interactions': 0
+    'jsx-a11y/no-static-element-interactions': 0,
+    'no-use-before-define': 'off'
   },
   // extends: ['./lint/eslintBase.js', './lint/eslintReact.js'],
   parserOptions: {
