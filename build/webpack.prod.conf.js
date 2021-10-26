@@ -1,16 +1,16 @@
-const path = require('path')
+import path from 'path'
 
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const TerserWebpackPlugin = require('terser-webpack-plugin')
-const webpack = require('webpack')
-const { merge } = require('webpack-merge')
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import TerserWebpackPlugin from 'terser-webpack-plugin'
+import webpack from 'webpack'
+import { merge } from 'webpack-merge'
 
-const pkg = require('../package.json')
+// import pkg from '../package.json'
 
-const webpackBaseConfig = require('./webpack.base.conf')
-const { cssModule } = require('./webpack.part')
+import webpackBaseConfig from './webpack.base.conf'
+import { cssModule } from './webpack.part'
 
 const outputPath = path.join(__dirname, '../dist')
 
@@ -19,7 +19,7 @@ module.exports = merge(webpackBaseConfig, {
     path: outputPath,
     filename: 'js/[name].[contenthash].js',
     chunkFilename: 'js/[name].[contenthash].js'
-    // NOTE: 咱不需要
+    // NOTE: 暂不需要
     // publicPath: `cdnUrl/${pkg.name}/dist/`,
   },
   mode: 'production',

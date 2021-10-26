@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import Time from './components/Time'
-import './App.css'
+import styles from './App.module.less'
 
 const App = () => {
   const handleClick = React.useCallback(() => {
@@ -9,8 +9,8 @@ const App = () => {
   }, [])
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className={styles.App}>
+      <header className={styles['App-header']}>
         <h3
           style={{
             color: '#fff'

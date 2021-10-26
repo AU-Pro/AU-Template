@@ -11,9 +11,9 @@ const cssModule = (handler = 'style-loader') => {
           loader: 'less-loader',
           options: {
             lessOptions: {
-              modifyVars: {
-                'primary-color': '#2CB6B0'
-              },
+              // modifyVars: {
+              //   'primary-color': '#2CB6B0'
+              // },
               javascriptEnabled: true
             }
           }
@@ -22,7 +22,7 @@ const cssModule = (handler = 'style-loader') => {
     },
     /** 只处理模块化的样式文件 */
     {
-      test: /\.(module\.)?less$/,
+      test: /\.(module\.)?(css|less)$/,
       exclude: /node_modules/,
       use: [
         /** 创建style标签，添加到header  */

@@ -1,5 +1,5 @@
 const { NODE_ENV } = process.env
-const isLocal = [undefined, 'local', 'developemnt'].includes(NODE_ENV)
+const isLocal = [undefined, 'local', 'development'].includes(NODE_ENV)
 
 module.exports = {
   parser: 'babel-eslint',
@@ -20,7 +20,7 @@ module.exports = {
   },
   // 以当前目录为根目录，不再向上查找 .eslintrc.js
   root: true,
-  extends: ['eslint-config-standard', 'plugin:import/recommended', 'plugin:prettier/recommended'],
+  extends: ['eslint-config-standard', 'plugin:import/recommended', 'prettier', 'plugin:prettier/recommended'],
   rules: {
     'array-callback-return': 0,
     curly: [2, 'all'],

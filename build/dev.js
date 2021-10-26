@@ -1,8 +1,7 @@
-const { execSync } = require('child_process')
+import { execSync } from 'child_process'
 
-const chalk = require('chalk')
-
-console.log(chalk.magenta('\n .... \n'))
+process.env.BABEL_ENV = 'development'
+process.env.NODE_ENV = 'development'
 
 const shellOptions = {
   stdio: 'inherit',
@@ -10,4 +9,4 @@ const shellOptions = {
 }
 
 execSync('git config core.ignorecase false')
-execSync('webpack serve --config ./build/webpack.dev.conf.js  --color', shellOptions)
+execSync('webpack serve --config ./build/webpack.dev.conf.js --color', shellOptions)

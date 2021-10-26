@@ -1,58 +1,59 @@
-const path = require('path')
+import path from 'path'
 
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const webpack = require('webpack')
-const { merge } = require('webpack-merge')
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
+import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import { merge } from 'webpack-merge'
 
-const webpackBaseConfig = require('./webpack.base.conf')
-const { cssModule } = require('./webpack.part')
+// TypeScript Hot refresh
+
+import webpackBaseConfig from './webpack.base.conf'
+import { cssModule } from './webpack.part'
 
 const proxyTarget = 'http://localhost:10061'
 
 module.exports = merge(webpackBaseConfig, {
+  mode: 'development', // 修改 process.env.NODE_ENV 为对应值
   output: {
     path: '/',
     publicPath: '/',
     filename: '[name].js',
     chunkFilename: '[name].js'
   },
-  // 修改 process.env.NODE_ENV 为对应值
-  mode: 'development',
-  // 构建目标 浏览器环境可用
-  target: 'web',
-  // 最佳实践 照抄
+  target: 'web', // 构建目标 浏览器环境可用
+
+  /** 最佳实践 照抄 */
   devtool: 'eval-cheap-module-source-map',
+  stats: {
+    // webpack 打包结果信息
+    assets: false,
+    colors: true,
+    modules: false,
+    children: false,
+    chunks: false,
+    chunkModules: false,
+    entrypoints: false
+  },
   devServer: {
-    host: '0.0.0.0',
+    host: '0.0.0.0', // 'local-ip' | 'local-ipv4' | 'local-ipv6'
+    // useLocalIp: true,                                        //  webpack5.0+ 不再包含此属性
     port: 5000,
-    disableHostCheck: true,
-    useLocalIp: true,
-    overlay: true,
-    hot: true,
+    allowedHosts: 'all', // 'auto' | 'all' [string]
+    client: {
+      overlay: true
+    },
+    // hot: true,
     headers: {
       'Access-Control-Allow-Origin': '*'
     },
-    // webpack 打包结果信息
-    stats: {
-      assets: false,
-      colors: true,
-      modules: false,
-      children: false,
-      chunks: false,
-      chunkModules: false,
-      entrypoints: false
-    },
-    // 所有的 404 请求都会响应index.html的内容
-    historyApiFallback: true,
-    // 代理服务
+    historyApiFallback: true, // 所有的 404 请求都会响应index.html的内容
     proxy: {
+      // 代理服务
       '/api': {
         target: proxyTarget
       }
     },
-    // 服务器启动自动打开浏览器
-    open: true
+    open: true // 服务器启动自动打开浏览器
   },
   module: {
     rules: [
@@ -64,15 +65,15 @@ module.exports = merge(webpackBaseConfig, {
           name: '[path][name].[ext]'
         }
       },
-      // 处理css
+      /** cssModule */
       ...cssModule()
     ]
   },
   plugins: [
     // webpack 打包报错特定标识
     new FriendlyErrorsWebpackPlugin(),
-    // 热更新
-    new webpack.HotModuleReplacementPlugin(),
+    // // 热更新
+    // new webpack.HotModuleReplacementPlugin(),
     /**
      * 创建HTML文件
      * template 创建HTML文件的模板
@@ -83,6 +84,7 @@ module.exports = merge(webpackBaseConfig, {
       templateParameters: {
         env: 'local'
       }
-    })
+    }),
+    new ReactRefreshWebpackPlugin()
   ]
 })

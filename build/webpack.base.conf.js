@@ -1,7 +1,9 @@
-const path = require('path')
+import path from 'path'
 
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
-const WebpackBar = require('webpackbar') // 打包进度条
+import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin'
+import CleanTerminalPlugin from 'clean-terminal-webpack-plugin'
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
+import WebpackBar from 'webpackbar' // 打包进度
 
 module.exports = {
   entry: path.resolve(__dirname, '../src/index.tsx'), // 入口文件
@@ -22,34 +24,34 @@ module.exports = {
   },
   module: {
     rules: [
-      /** ts */
-      {
-        test: /\.(ts|tsx)$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
       {
         test: /\.m?js/,
         resolve: {
           fullySpecified: false
         }
       },
-      /** 语法编译，向下兼容 */
+      /**
+       * 语法编译，向下兼容
+       * Ts / Js -- @babel/preset-typescript
+       */
       {
-        test: /\.(js[x]|ts[x])?$/,
-        /** babel 不处理的文件 */
+        test: /\.(ts|js)x?$/i,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              /** 缓存babel 编译文件 */
-              cacheDirectory: true
-            }
-          }
-        ]
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript']
+        }
       }
     ]
   },
-  plugins: [new CaseSensitivePathsPlugin(), new WebpackBar()]
+  plugins: [
+    new CleanTerminalPlugin(),
+    new CaseSensitivePathsPlugin(),
+    new ForkTsCheckerWebpackPlugin({
+      eslint: {
+        files: './src/**/*.{ts,tsx,js,jsx}'
+      }
+    }),
+    new WebpackBar()
+  ]
 }

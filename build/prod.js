@@ -1,6 +1,10 @@
-const webpack = require('webpack')
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+import webpack from 'webpack'
 
-const webpackConfig = require('./webpack.prod.conf')
+import webpackConfig from './webpack.prod.conf'
+
+process.env.BABEL_ENV = 'production'
+process.env.NODE_ENV = 'production'
 
 webpack(webpackConfig, (err, stats) => {
   if (err) {
@@ -8,7 +12,7 @@ webpack(webpackConfig, (err, stats) => {
   }
 
   process.stdout.write(
-    stats.toString({
+    `${stats.toString({
       assets: false,
       children: false,
       chunkModules: false,
@@ -17,11 +21,10 @@ webpack(webpackConfig, (err, stats) => {
       entrypoints: false,
       modules: false,
       warnings: false
-    }) + '\n\n'
+    })  }\n\n`
   )
 
   if (stats.hasErrors()) {
-    console.error('Build failed with errors\n')
     process.exit(1)
   }
 })
