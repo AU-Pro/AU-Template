@@ -1,26 +1,18 @@
-import * as React from 'react'
+import React from 'react'
+import Header from 'Components/Header'
+import './App.less'
 
-import styles from './App.module.less'
-import Time from './components/Time'
+interface IProps {
+  name: string
+  age: number
+}
 
-const App = () => {
-  const handleClick = React.useCallback(() => {
-    console.log('hellow')
-  }, [])
-
+function App(props: IProps) {
+  const { name, age } = props
   return (
-    <div className={styles.App}>
-      <header className={styles['App-header']}>
-        <h3
-          style={{
-            color: '#fff'
-          }}
-        >
-          AU-VIDE-NODE
-        </h3>
-
-        <Time onClick={handleClick} />
-      </header>
+    <div className='app'>
+      <Header />
+      <span className='span'>{`Hello! I'm ${name}, ${age} yearssss old.`}</span>
     </div>
   )
 }

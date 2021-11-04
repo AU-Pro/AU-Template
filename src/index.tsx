@@ -1,12 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-
-import './index.less'
 import App from './App'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('app')
-)
+// webpack Hot Module Replacement API
+if (module && module.hot) {
+  module.hot.accept()
+}
+
+ReactDOM.render(<App name='vortesnail' age={25} />, document.querySelector('#root'))
