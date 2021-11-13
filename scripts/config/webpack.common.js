@@ -55,6 +55,7 @@ module.exports = {
     alias: {
       Src: paths.appSrc,
       Components: paths.appSrcComponents,
+      Pages: paths.appSrcPages,
       Utils: paths.appSrcUtils
     }
   },

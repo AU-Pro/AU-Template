@@ -87,6 +87,8 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': OFF,
     '@typescript-eslint/no-use-before-define': ERROR,
     '@typescript-eslint/no-unused-vars': WARN,
+    '@typescript-eslint/no-shadow': WARN,
+    'no-shadow': OFF,
     'no-unused-vars': OFF,
 
     'react/jsx-filename-extension': [ERROR, { extensions: ['.tsx', 'ts', '.jsx', 'js'] }],

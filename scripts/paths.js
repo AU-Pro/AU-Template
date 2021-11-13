@@ -38,6 +38,7 @@ module.exports = {
   appNodeModules: resolveApp('node_modules'), // node_modules path
   appSrc: resolveApp('src'),
   appSrcComponents: resolveApp('src/components'),
+  appSrcPages: resolveApp('src/pages'),
   appSrcUtils: resolveApp('src/utils'),
   appProxySetup: resolveModule(resolveApp, 'scripts/setProxy'),
   appPackageJson: resolveApp('package.json'),
